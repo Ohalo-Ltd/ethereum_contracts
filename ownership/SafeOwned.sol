@@ -53,7 +53,7 @@ contract SafeOwned is ISafeOwned {
 
         _owner = _candidate;
         _candidate = 0;
-        emit ClaimOwnership(_msg.sender);
+        emit ClaimOwnership(msg.sender);
     }
 
     function isOwner(address acc) public view returns (bool) {

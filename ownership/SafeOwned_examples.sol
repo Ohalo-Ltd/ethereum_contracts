@@ -11,15 +11,17 @@ contract UserManagerExample is SafeOwned {
     // of the user name.
     mapping(address => bytes32) public users;
 
-    constructor() {}
+    constructor() public {}
 
     // Only the owner may add new users.
-    function addUser(address addr, bytes32 name) public onlyOwner {
+    function addUser(address addr, bytes32 name) public {
+        require(msg.sender == owner());
         users[addr] = name;
     }
 
     // Only the owner may remove a user.
-    function removeUser(address addr, bytes32 name) public onlyOwner {
+    function removeUser(address addr) public {
+        require(msg.sender == owner());
         delete users[addr];
     }
 
